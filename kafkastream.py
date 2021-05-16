@@ -7,7 +7,10 @@ if __name__ == "__main__":
         .builder \
         .appName("Kafka stream") \
         .config("spark.streaming.stop.stopGracefullyOnShutdown", "true") \
+        .master("yarn") \
         .getOrCreate()
+
+    logger = Log4j(spark)
 
     schema = StructType([
     StructField("InvoiceNumber", StringType()),
@@ -73,7 +76,7 @@ if __name__ == "__main__":
         .format("json") \
         .queryName("Flattened Invoice Writer") \
         .outputMode("append") \
-        .option("path", "output") \
+        .option("path", "/home/enes/Applications/output2") \
         .option("checkpointLocation", "chk-point-dir") \
         .trigger(processingTime="1 minute") \
         .start()
