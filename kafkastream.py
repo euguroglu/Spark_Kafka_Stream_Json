@@ -77,7 +77,7 @@ if __name__ == "__main__":
         .queryName("Flattened Invoice Writer") \
         .outputMode("append") \
         .option("path", "/home/enes/Applications/output2") \
-        .option("checkpointLocation", "chk-point-dir") \
+        .option("checkpointLocation", "Kafkastream/chk-point-dir") \
         .trigger(processingTime="1 minute") \
         .start()
 
